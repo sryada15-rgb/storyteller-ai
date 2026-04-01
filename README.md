@@ -95,31 +95,3 @@ Choice parsing depends on text formatting
 💾 Save/load stories
 🌐 Deploy online
 
-🧑‍💻 Author
-
-Built as an AI storytelling project using Streamlit and OpenAI.
-
----
-
-# 🔥 What I Fixed / Improved
-
-### ❌ Removed:
-- HuggingFace / OpenRouter / Groq (no longer used)
-- `gpt-3.5-turbo` (outdated)
-
-### ✅ Added:
-- modern model (`gpt-4o-mini`)
-- features section (important for recruiters)
-- clean structure section
-- better readability
-
----
-
-# 🚀 How to Update README in Git
-
-After replacing your README:
-
-```bash
-git add README.md
-git commit -m "Updated README with OpenAI-only architecture and new features"
-git push
