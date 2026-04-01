@@ -1,82 +1,125 @@
-# MyAvatar AI Story Weaver (Prototype)
+# 🧙‍♂️ AI Story Weaver
 
 ## Overview
 
-A Streamlit app for collaborative storytelling with AI. Users define title, genre, and initial hook. AI generates a strong opening paragraph, then users and AI alternate contributions with consistency and context-aware prompts.
+AI Story Weaver is a Streamlit-based app for **collaborative storytelling** using OpenAI.
 
-## Setup
+Users define a story title, genre, and initial hook. The AI generates an engaging opening, and then the story evolves through:
 
-1. Clone repo
-2. Create `.env` with your available API keys (at least one):
-   ```env
-   OPENAI_API_KEY=your_openai_key_here
-   HUGGINGFACE_API_KEY=your_hf_key_here
-   OPENROUTER_API_KEY=your_openrouter_key_here
-   GROQ_API_KEY=your_groq_key_here
-   ```
-3. Install dependencies:
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
-4. Run the app:
-   ```bash
-   streamlit run app.py
-   ```
+- AI-generated continuations
+- User contributions
+- Branching story choices
 
-## Model/provider
+The app maintains **context and consistency** across the story using structured prompts.
 
-The app supports:
-- OpenAI via `gpt-3.5-turbo` (preferred)
-- Hugging Face via router/direct inference
-- OpenRouter (router-based)
-- Groq
+---
 
-The default provider is `Auto`, which tries available providers in this order: OpenAI, HuggingFace, OpenRouter, Groq.
+## 🚀 Features
 
-## UI controls
+- ✨ AI-generated story opening
+- 🔁 Continue story with AI
+- 🎮 Branching choices (multiple plot directions)
+- ↩️ Undo last AI response
+- 🎚 Creativity control (temperature slider)
+- 💾 Export story as Markdown
 
-- Start the story: generate opening from title/hook
-- Continue with AI: append AI text to story
-- Give Me Choices: generate branching options
-- Undo Last AI Turn: remove last generated AI paragraph
-- Export as Markdown: download story rd
+---
 
-## Troubleshooting
+## 🛠 Setup
 
-- If a provider is unavailable, set another provider or keep `Auto` with at least one configured key.
-- For local reset, refresh browser or stop/restart Streamlit.
+### 1. Clone the repo
+```bash
+git clone https://github.com/sryada15-rgb/storyteller-ai.git
+cd storyteller-ai
 
-## Notes
+## Create .env
+-OPENAI_API_KEY=your_openai_key_here
 
-- Story history is kept in `st.session_state.story` and re-used for each LLM call.
-- Prompts include a consistent system prompt from `app.py` and previous context for continuity.
+## Install dependencies
+pip install -r requirements.txt
 
-- OpenAI `gpt-3.5-turbo` via `openai` Python SDK.
+## Run the app
+streamlit run app.py
+## Model
+-Uses OpenAI gpt-4o-mini
+-Optimized for:
+-storytelling
+-coherence
+-cost efficiency
 
-## Prompt
 
-System prompt in `app.py`:
+## How It Works
 
-"You are a masterful collaborative storyteller..."
+-The app stores story history in:
 
-User prompt pattern includes current story context, next action instructions, and genre consistency.
+st.session_state.story
+-Each AI request includes:
+--system prompt (storytelling rules)
+--genre-specific constraints
+--recent story context
+-Context is trimmed to prevent token overflow.
+## Project Structure
+storyteller-ai/
+├── app.py        # Streamlit UI + logic
+├── llm.py        # OpenAI API calls
+├── prompts.py    # system prompts + rules
+├── .env
 
-## Consistency strategy
+## Prompt Strategy
+-System Prompt
 
-- Full story history is sent on every API call.
-- System prompt enforces no contradictions + character/plot consistency.
-- History is stored in `st.session_state.story` and reused for each AI completion.
+-Ensures:
 
-## Bonus features implemented
+--consistency
+--no contradictions
+--engaging narrative tone
 
-- Undo last AI turn
-- Export full story as Markdown
+##User Prompts
 
-## Known issue / what didn’t work first
+-Include:
 
-- Initially user contributions were not preserved in context; fixed by appending them to story before invoking AI actions.
+--story so far
+--next action instruction
+--genre constraints
 
-## Next improvements
 
-- Add character tracker extraction, visualization prompt generation, and rate-limit retry logic.
-- Add better multi-turn state packaging to avoid exceeding token limits (summarize old context).
+## Known Limitations
+Long stories may lose early details (no summarization yet)
+Choice parsing depends on text formatting
+
+
+🚀 Future Improvements
+🧠 Story memory (summarization)
+🎭 Character tracking
+🔁 Regenerate response button
+💾 Save/load stories
+🌐 Deploy online
+
+🧑‍💻 Author
+
+Built as an AI storytelling project using Streamlit and OpenAI.
+
+---
+
+# 🔥 What I Fixed / Improved
+
+### ❌ Removed:
+- HuggingFace / OpenRouter / Groq (no longer used)
+- `gpt-3.5-turbo` (outdated)
+
+### ✅ Added:
+- modern model (`gpt-4o-mini`)
+- features section (important for recruiters)
+- clean structure section
+- better readability
+
+---
+
+# 🚀 How to Update README in Git
+
+After replacing your README:
+
+```bash
+git add README.md
+git commit -m "Updated README with OpenAI-only architecture and new features"
+git push
